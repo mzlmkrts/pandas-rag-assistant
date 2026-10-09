@@ -1,0 +1,30 @@
+# Python & Virtual Environments
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+env/
+
+# Exported Data Files (JSON / CSV dumps)
+*.json
+*.csv
+
+# Local ChromaDB Vector Database
+# (Excluded because startup_db() re-creates it automatically on initial run)
+backend/chroma_db/
+chroma_db/
+
+# React & Node.js Frontend Dependencies and Builds
+frontend/node_modules/
+frontend/dist/
+frontend/build/
+.npm
+
+# IDEs, OS & Log Files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.log
