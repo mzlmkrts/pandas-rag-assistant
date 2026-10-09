@@ -1,4 +1,4 @@
-# 🐼 Pandas Dynamic RAG Assistant
+# Pandas Dynamic RAG Assistant
 
 A secure, fully local, and dynamic Retrieval-Augmented Generation (RAG) assistant designed to query Pandas documentation with zero hallucinations and full context transparency. 
 
@@ -7,39 +7,35 @@ Pandas Dynamic RAG Assistant is a privacy-first, fully local AI query engine tha
 Built with **FastAPI**, **ChromaDB**, **Ollama (`llama3` & `nomic-embed-text`)**, and **React**.
 
 ---
-## 📐 Architecture & Data Flow
+## 📐 System Architecture & Data Pipeline
 
-+-------------------------------------------------------------------------------+
-|                             PYTHON RUNTIME                                   |
-|  pd.DataFrame / pd.Series / pd  --->  inspect.getdoc()                       |
-|                                            |                                  |
-|                                            v                                  |
-|                                  [ 514 Raw Docstrings ]                       |
-+--------------------------------------------+----------------------------------+
-|
-v
-+-------------------------------------------------------------------------------+
-|                             VECTOR DATABASE                                   |
-|  nomic-embed-text  --->  ChromaDB (Persistent Storage: backend/chroma_db)    |
-+--------------------------------------------+----------------------------------+
-|
-v
-+-------------------------------------------------------------------------------+
-|                            FASTAPI BACKEND API                                |
-|  - RAG Retrieval: Top-K Vector Search                                         |
-|  - Strict Prompt Guardrails (temperature: 0.1, zero hallucination)            |
-|  - Ollama Integration (llama3)                                                |
-+--------------------------------------------+----------------------------------+
-|
-v
-+-------------------------------------------------------------------------------+
-|                              REACT FRONTEND                                   |
-|  - Interactive Chat Interface with response timer                             |
-|  - Responses from LLM with reference to pandas documentation                  |
-|  - ChromaDB Inspector & Docstring Viewer Modal                                |
-|  - Raw Context Auditor (View exact chunks fed to LLM)                         |
-+-------------------------------------------------------------------------------+
+```mermaid
+flowchart TD
+    subgraph S1["1. Dynamic Extraction Layer"]
+        A["🐍 Python Runtime"] -->|"inspect.getdoc()"| B["📄 Raw Docstrings<br/><i>(pd.DataFrame, pd.Series, pd)</i>"]
+    end
 
+    subgraph S2["2. Vector Storage & Embedding"]
+        B -->|"nomic-embed-text"| C[("⚡ ChromaDB Vector Store<br/><i>persistent: backend/chroma_db</i>")]
+    end
+
+    subgraph S3["3. RAG Retrieval & Inference Engine"]
+        D["👤 User Query"] -->|"Vector Search"| C
+        C -->|"Top-K Context Chunks"| E["⚙️ FastAPI Backend"]
+        E -->|"Strict Prompt Guardrails<br/><i>(temp: 0.1)</i>"| F["🦙 Ollama (llama3)"]
+    end
+
+    subgraph S4["4. Interactive Transparency UI"]
+        F -->|"Streamed Response + Citations"| G["⚛️ React Frontend"]
+        G --> H["⏱️ Thought Duration Timer"]
+        G --> I["🔍 ChromaDB Inspector Modal"]
+        G --> J["🔍 Raw Context Auditor"]
+    end
+
+    style S1 fill:#1e293b,stroke:#3b82f6,color:#fff
+    style S2 fill:#1e293b,stroke:#8b5cf6,color:#fff
+    style S3 fill:#1e293b,stroke:#10b981,color:#fff
+    style S4 fill:#1e293b,stroke:#f59e0b,color:#fff
 ---
 
 ## ✨ Key Features
