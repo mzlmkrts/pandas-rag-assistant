@@ -11,25 +11,25 @@ Built with **FastAPI**, **ChromaDB**, **Ollama (`llama3` & `nomic-embed-text`)**
 
 ```mermaid
 flowchart TD
-    subgraph S1["1. Dynamic Extraction Layer"]
-        A["🐍 Python Runtime"] -->|"inspect.getdoc()"| B["📄 Raw Docstrings<br/><i>(pd.DataFrame, pd.Series, pd)</i>"]
+    subgraph S1 [1. Dynamic Extraction Layer]
+        A[Python Runtime] -->|inspect.getdoc| B[Raw Docstrings]
     end
 
-    subgraph S2["2. Vector Storage & Embedding"]
-        B -->|"nomic-embed-text"| C[("⚡ ChromaDB Vector Store<br/><i>persistent: backend/chroma_db</i>")]
+    subgraph S2 [2. Vector Storage and Embedding]
+        B -->|nomic-embed-text| C[(ChromaDB Vector Store)]
     end
 
-    subgraph S3["3. RAG Retrieval & Inference Engine"]
-        D["👤 User Query"] -->|"Vector Search"| C
-        C -->|"Top-K Context Chunks"| E["⚙️ FastAPI Backend"]
-        E -->|"Strict Prompt Guardrails<br/><i>(temp: 0.1)</i>"| F["🦙 Ollama (llama3)"]
+    subgraph S3 [3. RAG Retrieval and Inference]
+        D[User Query] -->|Vector Search| C
+        C -->|Top-K Chunks| E[FastAPI Backend]
+        E -->|Strict Guardrails temp 0.1| F[Ollama llama3]
     end
 
-    subgraph S4["4. Interactive Transparency UI"]
-        F -->|"Streamed Response + Citations"| G["⚛️ React Frontend"]
-        G --> H["⏱️ Thought Duration Timer"]
-        G --> I["🔍 ChromaDB Inspector Modal"]
-        G --> J["🔍 Raw Context Auditor"]
+    subgraph S4 [4. Transparency Dashboard]
+        F -->|Streamed Response| G[React Frontend]
+        G --> H[Thought Duration Timer]
+        G --> I[ChromaDB Inspector]
+        G --> J[Raw Context Auditor]
     end
 
     style S1 fill:#1e293b,stroke:#3b82f6,color:#fff
