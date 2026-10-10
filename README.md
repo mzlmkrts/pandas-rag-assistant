@@ -14,13 +14,6 @@ Built with **FastAPI**, **ChromaDB**, **Ollama (`llama3` & `nomic-embed-text`)**
 
 **Pandas RAG Assistant** bridges the gap between complex official APIs and instant, reliable developer insights—**100% locally and completely private**.
 
----
-
-## 💡 Why Pandas RAG Assistant?
-
- Navigating the vast Pandas documentation can be slow, complex, and frustrating. Conventional online LLMs often produce **outdated syntax or subtle hallucinations** when dealing with nuanced data manipulation methods.
-
-**Pandas RAG Assistant** bridges the gap between complex official APIs and instant, reliable developer insights—**100% locally and completely private**.
 
 ---
 
