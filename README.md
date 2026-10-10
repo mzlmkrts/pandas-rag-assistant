@@ -7,6 +7,7 @@ Pandas Dynamic RAG Assistant is a privacy-first, fully local AI query engine tha
 Built with **FastAPI**, **ChromaDB**, **Ollama (`llama3` & `nomic-embed-text`)**, and **React**.
 
 ---
+
 ## 📐 System Architecture & Data Pipeline
 
 ```mermaid
