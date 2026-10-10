@@ -8,6 +8,41 @@ Built with **FastAPI**, **ChromaDB**, **Ollama (`llama3` & `nomic-embed-text`)**
 
 ---
 
+## 💡 Why Pandas RAG Assistant?
+
+ Navigating the vast Pandas documentation can be slow, complex, and frustrating. Conventional online LLMs often produce **outdated syntax or subtle hallucinations** when dealing with nuanced data manipulation methods.
+
+**Pandas RAG Assistant** bridges the gap between complex official APIs and instant, reliable developer insights—**100% locally and completely private**.
+
+---
+
+## 💡 Why Pandas RAG Assistant?
+
+ Navigating the vast Pandas documentation can be slow, complex, and frustrating. Conventional online LLMs often produce **outdated syntax or subtle hallucinations** when dealing with nuanced data manipulation methods.
+
+**Pandas RAG Assistant** bridges the gap between complex official APIs and instant, reliable developer insights—**100% locally and completely private**.
+
+---
+
+## 🚀 Key Advantages & Architecture Philosophy
+
+### 🔒 1. Fully Local & Zero-Cost Infrastructure
+* **Total Privacy:** Your data and queries never leave your local machine.
+* **No API Keys or Costs:** Driven completely by local instances of **Ollama (`llama3`)** and **ChromaDB**.
+* **Offline-Ready:** Works seamlessly without an active internet connection once initial embeddings are created.
+
+### ⚡ 2. Dynamic Runtime Ingestion (Zero Maintenance)
+* Instead of relying on static markdown files that quickly become outdated, the backend uses Python runtime introspection (`inspect.getdoc()`) directly on the installed Pandas package.
+* Automatically stays synchronized with whatever version of Pandas you have installed!
+
+### 🎨 3. Easy UX & "Transparency First" Dashboard
+Unlike opaque "black-box" AI tools, this UI prioritizes maximum auditability and developer control:
+
+* ⏱️ **Thought Duration Timer:** Real-time metrics tracking exact model reasoning and vector retrieval latency.
+* 🔍 **ChromaDB Inspector Modal:** Explore top-$k$ retrieved vector snippets and context chunks used for every query.
+* 📄 **Raw Context Auditor:** Inspect the exact docstrings injected into the LLM prompt before the final answer is streamed.
+* 💬 **Clean & Responsive UI:** Modern glassmorphism design built with React, Vite, and Tailwind CSS for frictionless developer workflows.
+
 ## 📐 System Architecture & Data Pipeline
 
 ### 1. Dynamic Extraction Layer
