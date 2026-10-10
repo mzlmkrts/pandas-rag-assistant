@@ -10,33 +10,20 @@ Built with **FastAPI**, **ChromaDB**, **Ollama (`llama3` & `nomic-embed-text`)**
 
 ## 📐 System Architecture & Data Pipeline
 
-```mermaid
-flowchart TD
-    subgraph S1 [1. Dynamic Extraction Layer]
-        A[Python Runtime] -->|inspect.getdoc| B[Raw Docstrings]
-    end
+### 1. Dynamic Extraction Layer
+> **Python Runtime** (`inspect.getdoc()`) ➔ Extracts live docstrings from **500+ Pandas API Methods** at startup.
 
-    subgraph S2 [2. Vector Storage and Embedding]
-        B -->|nomic-embed-text| C[(ChromaDB Vector Store)]
-    end
+### 2. Vector Storage & Embedding
+> **nomic-embed-text** ➔ Generates semantic embeddings stored persistently in **ChromaDB** (`backend/chroma_db`).
 
-    subgraph S3 [3. RAG Retrieval and Inference]
-        D[User Query] -->|Vector Search| C
-        C -->|Top-K Chunks| E[FastAPI Backend]
-        E -->|Strict Guardrails temp 0.1| F[Ollama llama3]
-    end
+### 3. RAG Retrieval & Inference Engine
+> **User Query** ➔ Top-K Vector Search ➔ **FastAPI Backend** ➔ Strict Guardrails (`temp: 0.1`) ➔ **Ollama (llama3)**.
 
-    subgraph S4 [4. Transparency Dashboard]
-        F -->|Streamed Response| G[React Frontend]
-        G --> H[Thought Duration Timer]
-        G --> I[ChromaDB Inspector]
-        G --> J[Raw Context Auditor]
-    end
-
-    style S1 fill:#1e293b,stroke:#3b82f6,color:#fff
-    style S2 fill:#1e293b,stroke:#8b5cf6,color:#fff
-    style S3 fill:#1e293b,stroke:#10b981,color:#fff
-    style S4 fill:#1e293b,stroke:#f59e0b,color:#fff
+### 4. Interactive Transparency UI
+> **React Frontend** featuring:
+> - ⏱️ Thought Duration Timer
+> - 🔍 ChromaDB Inspector Modal
+> - 🔍 Raw Context Auditor
 ---
 
 ## ✨ Key Features
